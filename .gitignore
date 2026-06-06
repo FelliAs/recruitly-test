@@ -8,4 +8,5 @@ venv/
 generate_sbert_notebook.py
 huggingface_cache/
 scratch/
-
+unsupervised
+generate_unsupervised_notebook.py

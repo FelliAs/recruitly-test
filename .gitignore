@@ -3,3 +3,4 @@ resume Screening using NLP.ipynb
 .ipynb_checkpoints/
 __pycache__/
 *.pyc
+generate_regression_notebook.py

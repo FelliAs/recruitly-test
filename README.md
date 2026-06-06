@@ -13,8 +13,8 @@ Repositori ini dibagi menjadi dua folder utama berdasarkan pendekatan metodologi
 
 1. **`NLP_Supervised/` (Aktif)**
    * Berisi eksperimen, eksplorasi data, dan pemodelan regresi terbimbing (*supervised*) untuk memprediksi `match_score` berdasarkan data latih yang memiliki label kecocokan (1-5).
-2. **`NLP_Unsupervised/` (Segera Datang / Coming Soon)**
-   * Akan berisi pendekatan tidak terbimbing (*unsupervised*) seperti clustering, pencarian kemiripan semantik murni (*semantic search*), atau pemodelan topik (*topic modeling*) tanpa bergantung pada label skor kecocokan historis.
+2. **`NLP_Unsupervised/` (Aktif)**
+   * Berisi pendekatan tidak terbimbing (*unsupervised*) seperti clustering (KMeans & HDBSCAN) dan pencarian kemiripan semantik murni (*semantic search*) menggunakan SBERT untuk mengevaluasi seleksi CV tanpa *Job Description*.
 
 ---
 
@@ -35,6 +35,20 @@ Di dalam folder ini, terdapat beberapa notebook utama yang mendokumentasikan alu
 * **Ekstraksi Fitur**: Menggunakan pre-trained model **Sentence-BERT (`all-MiniLM-L6-v2`)** untuk menghasilkan embedding 384 dimensi yang menangkap makna kontekstual kalimat secara utuh (bukan hanya pencocokan kata kunci).
 * **Model & Regularisasi**: Menggunakan Linear Regression, **Ridge Regression**, **Lasso Regression**, Random Forest, XGBoost, dan LightGBM.
 * **Tuning**: Optimasi parameter `alpha` pada Ridge Regression menggunakan `GridSearchCV` 5-fold cross-validation.
+
+---
+
+## 🛠️ Detail Folder: `NLP_Unsupervised`
+
+Folder ini menampung implementasi pendekatan Unsupervised Learning untuk pengelompokan dan pencarian CV berdasarkan kemiripan konten:
+
+### 1. Eksplorasi & Clustering Resume (`NLP_Unsupervised/recruitly_resume_clustering_unsupervised.ipynb`)
+* **Eksplorasi Data**: Analisis distribusi kategori pekerjaan (24 kelas) dan panjang teks CV menggunakan Resume Dataset Kaggle.
+* **Preprocessing**: Pembersihan teks menggunakan NLTK stopwords, konversi ke lowercase, serta penghapusan angka dan tanda baca.
+* **SBERT Embedding**: Mengonversi teks CV bersih menjadi representasi vektor 384 dimensi dengan `all-MiniLM-L6-v2`.
+* **Clustering & Visualisasi**: Pengelompokan data menggunakan algoritma **KMeans** (24 klaster) dan **HDBSCAN**. Reduksi dimensi divisualisasikan menggunakan **UMAP**.
+* **Evaluasi Ground Truth**: Menggunakan metrik NMI (Normalized Mutual Information) dan ARI (Adjusted Rand Index) untuk membandingkan klaster hasil dengan kategori asli dataset Kaggle.
+* **Simulasi Ranking**: Pencarian top 10 resume yang paling mirip menggunakan *Cosine Similarity*.
 
 ---
 
@@ -75,7 +89,7 @@ Instal PyTorch dengan dukungan akselerasi GPU (CUDA) dan library pendukung lainn
 pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cu121
 
 # Instal library pendukung
-pip install --no-cache-dir sentence-transformers pandas numpy scikit-learn lightgbm xgboost matplotlib seaborn ipykernel
+pip install --no-cache-dir sentence-transformers pandas numpy scikit-learn lightgbm xgboost matplotlib seaborn ipykernel hdbscan umap-learn nltk
 ```
 
 ### 4. Menghindari Kernel Crash & Cache C-Drive

@@ -1,0 +1,5 @@
+generate_notebook.py
+resume Screening using NLP.ipynb
+.ipynb_checkpoints/
+__pycache__/
+*.pyc

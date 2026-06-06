@@ -4,3 +4,8 @@ resume Screening using NLP.ipynb
 __pycache__/
 *.pyc
 generate_regression_notebook.py
+venv/
+generate_sbert_notebook.py
+huggingface_cache/
+scratch/
+

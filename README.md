@@ -1,5 +1,8 @@
 # Recruitly: CV & Job Description Matching using NLP
 
+> [!WARNING]
+> **Status Proyek**: Seluruh proyek ini masih dalam tahap pengembangan aktif (*work-in-progress*) dan belum benar-benar selesai, termasuk seluruh file yang telah di-push ke platform ini.
+
 Proyek ini bertujuan untuk membangun model Natural Language Processing (NLP) guna melakukan pencocokan (*matching*) otomatis antara CV (Resume) pelamar dengan Deskripsi Pekerjaan (*Job Description*). Model memprediksi tingkat kecocokan dalam skala 1 hingga 5 (`match_score`) menggunakan pendekatan Supervised Learning dan Unsupervised Learning.
 
 ---
